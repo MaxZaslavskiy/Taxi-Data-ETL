@@ -3,11 +3,12 @@
 A C# Console Application designed to extract, transform, and load (ETL) taxi trip data from a CSV file into a SQL Server database.
 
 Assumptions Made
-1.	Timezones: The input CSV does not specify a timezone, but based on the requirements, it is assumed to be Eastern Standard Time (EST).
+1.  DB: Created the database through SSMS, but added a creation script as an example.
+2.	Timezones: The input CSV does not specify a timezone, but based on the requirements, it is assumed to be Eastern Standard Time (EST).
     The application explicitly converts these times to UTC before insertion.
-2.	Duplicates: A record is considered a duplicate only if the exact combination of tpep_pickup_datetime, tpep_dropoff_datetime, and passenger_count matches an existing record.
+3.	Duplicates: A record is considered a duplicate only if the exact combination of tpep_pickup_datetime, tpep_dropoff_datetime, and passenger_count matches an existing record.
     If passenger_count is missing, it is handled safely (treated as 0 for the hash key).
-3.	Unsafe Data: To handle potentially unsafe sources, CsvHelper is used for strict, safe type parsing, and SqlBulkCopy is used for database insertion, which inherently protects against SQL injection.
+4.	Unsafe Data: To handle potentially unsafe sources, CsvHelper is used for strict, safe type parsing, and SqlBulkCopy is used for database insertion, which inherently protects against SQL injection.
 
 Handling a 10GB CSV File
 If the application were to process a 10GB CSV file, the current in-memory deduplication (HashSet) and list accumulation would cause an OutOfMemoryException. 
