@@ -1,3 +1,7 @@
+# Taxi Data ETL
+
+A C# Console Application designed to extract, transform, and load (ETL) taxi trip data from a CSV file into a SQL Server database.
+
 Assumptions Made
 1.	Timezones: The input CSV does not specify a timezone, but based on the requirements, it is assumed to be Eastern Standard Time (EST).
     The application explicitly converts these times to UTC before insertion.
